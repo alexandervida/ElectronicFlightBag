@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JS Offline PWA</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #output {
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello world! v69</h1>
+    <div class="button-container">
+        <button id="btn1">Button 1</button>
+        <button id="btn2">Button 2</button>
+    </div>
+    <div id="output"></div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const output = document.getElementById("output");
+
+    document.getElementById("btn1").addEventListener("click", () => {
+        output.textContent = "Button 1 gedrückt";
+    });
+
+    document.getElementById("btn2").addEventListener("click", () => {
+        output.textContent = "Button 2 gedrückt";
+    });
+
+    // Service Worker Registration
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js")
+        .then(() => console.log("SW registered"))
+        .catch(err => console.error("SW registration failed:", err));
+    }
+});
+</script>
+
+</body>
+</html>
